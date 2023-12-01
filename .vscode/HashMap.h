@@ -51,6 +51,9 @@ bool HashMap<Type>::isEmpty() {
 template<typename Type>
 inline Type getVal(const Type& key) { 
     int index = hashFunc(key);
+if (map[index].value == 0)
+     cerr << "The key NOT found";
+ else
     return map[index].value;
 }
 
