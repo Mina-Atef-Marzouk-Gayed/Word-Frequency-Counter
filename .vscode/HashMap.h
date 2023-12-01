@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
-using namespace std;
 
-template <typename KeyType,typename ValueType>
+template <typename KeyType, typename ValueType>
+
 class HashMap {
 public:
     class Entry {
@@ -24,10 +24,11 @@ public:
     void put(KeyType key, ValueType value);
     void remove(KeyType key);
     void display();
-    KeyType getVal(KeyType key);
+    ValueType getVal(KeyType key);
 };
 
 template <typename KeyType, typename ValueType>
+
 HashMap<KeyType, ValueType>::HashMap() : map(new Entry[capacity]) {}
 
 template <typename KeyType, typename ValueType>
@@ -39,36 +40,33 @@ int HashMap<KeyType, ValueType>::hashFunc(KeyType key) {
     return index % capacity;
 }
 
-
-
-template <typename KeyType, typename ValueType>
-void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
-
-    int hashedKeyIndex = hashFunc(key);
-    map[hashedKeyIndex] = value;
-
-}
-
 template <typename KeyType, typename ValueType>
 bool HashMap<KeyType, ValueType>::isEmpty() {
+
     for (int i = 0; i < capacity; i++) {
-        if (map[i].key.empty() && map[i].value != 0) {
+        if (!map[i].key.empty() && map[i].value != 0) {
             return false;
         }
     }
     return true;
 }
+template <typename KeyType, typename ValueType>
+void HashMap<KeyType, ValueType>::put( KeyType key, ValueType value) {
+    int index = hashFunc(key);
+    map[index].key = key;
+    map[index].value = value;
+}
 
 template <typename KeyType, typename ValueType>
 inline KeyType getVal(const KeyType& key) {
     int index = hashFunc(key);
-if (map[index].value == 0)
-     cerr << "The key NOT found";
- else
-    return map[index].value;
+    if (map[index].value == 0)
+        cerr << "The key NOT found";
+    else
+        return map[index].value;
 }
-
 template <typename KeyType, typename ValueType>
 HashMap<KeyType, ValueType>::~HashMap() {
+
     delete[] map;
 }
