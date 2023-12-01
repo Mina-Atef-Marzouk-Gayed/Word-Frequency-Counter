@@ -62,6 +62,9 @@ bool HashMap<KeyType, ValueType>::isEmpty() {
 template <typename KeyType, typename ValueType>
 inline KeyType getVal(const KeyType& key) {
     int index = hashFunc(key);
+if (map[index].value == 0)
+     cerr << "The key NOT found";
+ else
     return map[index].value;
 }
 
