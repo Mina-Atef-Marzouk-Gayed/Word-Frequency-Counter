@@ -58,6 +58,27 @@ void HashMap<KeyType, ValueType>::put( KeyType key, ValueType value) {
 }
 
 template <typename KeyType, typename ValueType>
+void HashMap<KeyType , ValueType>::remove(KeyType key) {
+
+    int hashedKeyIndex = hashFunc(key);
+
+    if (isEmpty) {
+        cerr << "[WARNING] : Your hashmap is empty , so the following operation cannot be perforemd .";
+        exit(0);
+    }
+    if (map[hashedKeyIndex].key != key) {
+        cerr << "[WARNING] : Key doesn't exist , cancelling operation .";
+        exit(0);
+    }
+    else {
+
+        map[hashedKeyIndex].key.clear();
+
+    }
+    
+}
+
+template <typename KeyType, typename ValueType>
 inline KeyType getVal(const KeyType& key) {
     int index = hashFunc(key);
     if (map[index].value == 0)
