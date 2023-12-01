@@ -58,7 +58,7 @@ void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
     }
     else {
         map[index].key = key;
-        map[index].value = value;
+        map[index].value = value+1;
     }
 }
 
