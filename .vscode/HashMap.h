@@ -17,7 +17,7 @@ private:
     int capacity = 100;
     Entry* map;
     int hashFunc(KeyType key);
-int size=0;
+
 
 public:
     HashMap();
@@ -57,7 +57,7 @@ void HashMap<KeyType, ValueType>::put( KeyType key, ValueType value) {
     int index = hashFunc(key);
     map[index].key = key;
     map[index].value = value;
-    size++
+    
 }
 
 template <typename KeyType, typename ValueType>
@@ -107,8 +107,10 @@ HashMap<KeyType, ValueType>::~HashMap() {
 }
 template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::display() {
-    for (int i = 0; i < size; i++) {
-        if (!map[i].key.empty()) {
+    for (int i = 0; i < capacity; i++)
+    {
+        if (map[i].key.empty())continue; 
+        {
             cout << "Key: " << map[i].key << ", Value: " << map[i].value <<endl;
         }
     }
