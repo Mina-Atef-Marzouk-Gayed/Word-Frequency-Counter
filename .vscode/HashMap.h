@@ -58,7 +58,7 @@ void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
     }
     else {
         map[index].key = key;
-        map[index].value = value+1;
+        map[index].value = value;
     }
 }
 
@@ -68,7 +68,7 @@ void HashMap<KeyType, ValueType>::remove(KeyType key) {
 
     int hashedKeyIndex = hashFunc(key);
 
-    if (isEmpty) {
+    if (isEmpty()) {
         cerr << "[WARNING] : Your hashmap is empty , so the following operation cannot be perforemd .";
         exit(0);
     }
@@ -77,9 +77,7 @@ void HashMap<KeyType, ValueType>::remove(KeyType key) {
         exit(0);
     }
     else {
-
         map[hashedKeyIndex].key.clear();
-
     }
 
 }
