@@ -9,6 +9,7 @@ public:
     public:
         KeyType key;
         ValueType value;
+        Entry() : key(), value() {}
         Entry(const KeyType& k, const ValueType& v) : key(k), value(v) {}
     };
 
