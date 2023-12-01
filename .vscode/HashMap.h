@@ -2,36 +2,36 @@
 #include <iostream>
 using namespace std;
 
-template <typename Type1,typename Type2>
+template <typename KeyType,typename ValueType>
 class HashMap {
 public:
     class Entry {
     public:
-        Type1 key;
-        Type2 value;
-        Entry(const Type1& k, const Type2& v) : key(k), value(v) {}
+        KeyType key;
+        ValueType value;
+        Entry(const KeyType& k, const ValueType& v) : key(k), value(v) {}
     };
 
 private:
     int capacity = 100;
     Entry* map;
-    int hashFunc(Type1 key);
+    int hashFunc(KeyType key);
 
 public:
     HashMap();
     ~HashMap();
     bool isEmpty();
-    void put(Type1 key, Type2 value);
-    void remove(Type key);
+    void put(KeyType key, ValueType value);
+    void remove(KeyType key);
     void display();
-    Type1 getVal(Type1 key);
+    KeyType getVal(KeyType key);
 };
 
-template <typename Type1, typename Type2>
-HashMap<Type1,Type2>::HashMap() : map(new Entry[capacity]) {}
+template <typename KeyType, typename ValueType>
+HashMap<KeyType, ValueType>::HashMap() : map(new Entry[capacity]) {}
 
-template <typename Type1, typename Type2>
-int HashMap<Type1, Type2>::hashFunc(Type1 key) {
+template <typename KeyType, typename ValueType>
+int HashMap<KeyType, ValueType>::hashFunc(KeyType key) {
     int index = 0;
     for (int i = 0; i < key.length(); i++) {
         index += static_cast<int>(key[i]);
@@ -41,16 +41,16 @@ int HashMap<Type1, Type2>::hashFunc(Type1 key) {
 
 
 
-template <typename Type1, typename Type2>
-void HashMap<Type1, Type2>::put(Type1 key, Type2 value) {
+template <typename KeyType, typename ValueType>
+void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
 
     int hashedKeyIndex = hashFunc(key);
     map[hashedKeyIndex] = value;
 
 }
 
-template <typename Type1, typename Type2>
-bool HashMap<Type1 , Type2>::isEmpty() {
+template <typename KeyType, typename ValueType>
+bool HashMap<KeyType, ValueType>::isEmpty() {
     for (int i = 0; i < capacity; i++) {
         if (map[i].key.empty() && map[i].value != 0) {
             return false;
@@ -59,13 +59,13 @@ bool HashMap<Type1 , Type2>::isEmpty() {
     return true;
 }
 
-template <typename Type1, typename Type2>
-inline Type1 getVal(const Type1& key) {
+template <typename KeyType, typename ValueType>
+inline KeyType getVal(const KeyType& key) {
     int index = hashFunc(key);
     return map[index].value;
 }
 
-template <typename Type1, typename Type2>
-HashMap<Type1,Type2>::~HashMap() {
+template <typename KeyType, typename ValueType>
+HashMap<KeyType, ValueType>::~HashMap() {
     delete[] map;
 }
