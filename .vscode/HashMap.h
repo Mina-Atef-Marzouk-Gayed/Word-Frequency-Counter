@@ -77,7 +77,17 @@ void HashMap<KeyType , ValueType>::remove(KeyType key) {
     }
     
 }
-
+template <typename KeyType, typename ValueType>
+void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
+    int index = hashFunc(key);
+    if (map[index].key == key) {
+        map[index].value = value;
+    }
+    else {
+        map[index].key = key;
+        map[index].value = value;
+    }
+}
 template <typename KeyType, typename ValueType>
 inline KeyType getVal(const KeyType& key) {
     int index = hashFunc(key);
