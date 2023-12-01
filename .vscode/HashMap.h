@@ -2,8 +2,8 @@
 #include <iostream>
 using namespace std;
 
-template <typename KeyType, typename ValueType>
 
+template <typename KeyType, typename ValueType>
 class HashMap {
 public:
     class Entry {
@@ -19,7 +19,6 @@ private:
     Entry* map;
     int hashFunc(KeyType key);
 
-
 public:
     HashMap();
     ~HashMap();
@@ -31,7 +30,6 @@ public:
 };
 
 template <typename KeyType, typename ValueType>
-
 HashMap<KeyType, ValueType>::HashMap() : map(new Entry[capacity]) {}
 
 template <typename KeyType, typename ValueType>
@@ -56,17 +54,12 @@ bool HashMap<KeyType, ValueType>::isEmpty() {
 template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
     int index = hashFunc(key);
-    if (map[index].key == key) {
-        map[index].value = value+1;
-    }
-    else {
-        map[index].key = key;
-        map[index].value = value;
-    }
+    map[index].key = key;
+    map[index].value = value;
 }
 
 template <typename KeyType, typename ValueType>
-void HashMap<KeyType , ValueType>::remove(KeyType key) {
+void HashMap<KeyType, ValueType>::remove(KeyType key) {
 
     int hashedKeyIndex = hashFunc(key);
 
@@ -81,42 +74,34 @@ void HashMap<KeyType , ValueType>::remove(KeyType key) {
     else {
 
         map[hashedKeyIndex].key.clear();
-        size--;
 
     }
-    
+
 }
-template <typename KeyType, typename ValueType>
-void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
-    int index = hashFunc(key);
-    if (map[index].key == key) {
-        map[index].value = value+1;
-    }
-    else {
-        map[index].key = key;
-        map[index].value = value;
-    }
-}
-template <typename KeyType, typename ValueType>
-inline KeyType getVal(const KeyType& key) {
+
+template<typename KeyType, typename ValueType>
+inline ValueType HashMap<KeyType, ValueType>::getVal(KeyType key)
+{
     int index = hashFunc(key);
     if (map[index].value == 0)
         cerr << "The key NOT found";
     else
         return map[index].value;
 }
-template <typename KeyType, typename ValueType>
-HashMap<KeyType, ValueType>::~HashMap() {
 
-    delete[] map;
-}
 template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::display() {
     for (int i = 0; i < capacity; i++)
     {
-        if (map[i].key.empty())continue; 
+        if (map[i].key.empty())continue;
         {
-            cout << "Key: " << map[i].key << ", Value: " << map[i].value <<endl;
+            cout << "Key: " << map[i].key << ", Value: " << map[i].value << endl;
         }
     }
+}
+
+template <typename KeyType, typename ValueType>
+HashMap<KeyType, ValueType>::~HashMap() {
+
+    delete[] map;
 }
