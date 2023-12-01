@@ -43,9 +43,8 @@ int HashMap<KeyType, ValueType>::hashFunc(KeyType key) {
 
 template <typename KeyType, typename ValueType>
 bool HashMap<KeyType, ValueType>::isEmpty() {
-
     for (int i = 0; i < capacity; i++) {
-        if (map[i].key.empty() && map[i].value != 0) {
+        if (!map[i].key.empty()) {
             return false;
         }
     }
