@@ -53,11 +53,15 @@ bool HashMap<KeyType, ValueType>::isEmpty() {
     return true;
 }
 template <typename KeyType, typename ValueType>
-void HashMap<KeyType, ValueType>::put( KeyType key, ValueType value) {
+void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
     int index = hashFunc(key);
-    map[index].key = key;
-    map[index].value = value;
-    
+    if (map[index].key == key) {
+        map[index].value = value;
+    }
+    else {
+        map[index].key = key;
+        map[index].value = value;
+    }
 }
 
 template <typename KeyType, typename ValueType>
