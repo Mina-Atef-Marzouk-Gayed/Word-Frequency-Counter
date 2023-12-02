@@ -23,7 +23,7 @@ public:
     HashMap();
     ~HashMap();
     bool isEmpty();
-    void put(KeyType key, ValueType value);
+    void put(KeyType key);
     void remove(KeyType key);
     void display();
     ValueType getVal(KeyType key);
@@ -36,7 +36,7 @@ template <typename KeyType, typename ValueType>
 int HashMap<KeyType, ValueType>::hashFunc(KeyType key) {
     int index = 0;
     for (int i = 0; i < key.length(); i++) {
-        index += static_cast<int>(key[i]);
+        index += static_cast<int>(tolower(key[i]));
     }
     return index % capacity;
 }
@@ -51,14 +51,14 @@ bool HashMap<KeyType, ValueType>::isEmpty() {
     return true;
 }
 template <typename KeyType, typename ValueType>
-void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
+void HashMap<KeyType, ValueType>::put(KeyType key) {
     int index = hashFunc(key);
     if (map[index].key == key) {
-        map[index].value = value+1;
+        map[index].value++;
     }
     else {
         map[index].key = key;
-        map[index].value = value;
+        map[index].value++;
     }
 }
 
@@ -86,10 +86,13 @@ template<typename KeyType, typename ValueType>
 inline ValueType HashMap<KeyType, ValueType>::getVal(KeyType key)
 {
     int index = hashFunc(key);
-    if (map[index].value == 0)
+    if (map[index].value < 1) {
         cerr << "The key NOT found";
-    else
+        exit(0);
+    }
+    else {
         return map[index].value;
+    }
 }
 
 template <typename KeyType, typename ValueType>
