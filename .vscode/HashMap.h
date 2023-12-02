@@ -11,7 +11,7 @@ public:
         KeyType key;
         ValueType value;
         Entry() : key(), value() {}
-        Entry(const KeyType& k, const ValueType& v) : key(k), value(v) {}
+        Entry(const KeyType& k, const ValueType& v) : key(k), value(1) {}
     };
 
 private:
@@ -54,7 +54,7 @@ template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::put(KeyType key, ValueType value) {
     int index = hashFunc(key);
     if (map[index].key == key) {
-        map[index].value = value;
+        map[index].value = value+1;
     }
     else {
         map[index].key = key;
