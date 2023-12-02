@@ -6,12 +6,10 @@ using namespace std;
 int main() {
     HashMap<std::string, int> map;
 
-    // Add key-value pairs to the map
-    map.put("apple", 5);
-    map.put("banana", 10);
-    map.put("orange", 7);
+    map.put("BMW");
+    map.put("LANCER");
+    map.put("KIA");
 
-    // Display the contents of the map
     map.display();
 
     // Get the value for a specific key
@@ -37,10 +35,10 @@ int main() {
     while (separate >> word) {
         mapping.put(word);
     }
-   
+
     mapping.display();
 
-    
+
 
     return 0;
 }
