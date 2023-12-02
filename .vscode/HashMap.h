@@ -44,7 +44,7 @@ int HashMap<KeyType, ValueType>::hashFunc(KeyType key) {
 template <typename KeyType, typename ValueType>
 bool HashMap<KeyType, ValueType>::isEmpty() {
     for (int i = 0; i < capacity; i++) {
-        if (!map[i].key.empty()) {
+        if (map[i].key == KeyType()) {
             return false;
         }
     }
@@ -62,7 +62,6 @@ void HashMap<KeyType, ValueType>::put(KeyType key) {
     }
 }
 
-
 template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::remove(KeyType key) {
 
@@ -77,7 +76,7 @@ void HashMap<KeyType, ValueType>::remove(KeyType key) {
         exit(0);
     }
     else {
-        map[hashedKeyIndex].key.clear();
+        map[hashedKeyIndex].key = KeyType();
     }
 
 }
@@ -99,7 +98,7 @@ template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::display() {
     for (int i = 0; i < capacity; i++)
     {
-        if (map[i].key.empty())
+        if (map[i].key=KeyType())
             continue;
         cout << "Key: " << map[i].key << ", Value: " << map[i].value << endl;
     }
