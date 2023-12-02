@@ -1,4 +1,6 @@
-#include "HashMap.h"
+#include <iostream>
+#include <sstream>
+#include "hashmap.h"
 using namespace std;
 
 int main() {
@@ -25,6 +27,20 @@ int main() {
     else {
         std::cout << "Map is not empty" << std::endl;
     }
+
+    HashMap<string, int> mapping;
+    string text;
+    cout << "Please input any text you would like : ";
+    getline(cin, text);
+    istringstream separate(text);
+    string word;
+    while (separate >> word) {
+        mapping.put(word);
+    }
+   
+    mapping.display();
+
+    
 
     return 0;
 }
