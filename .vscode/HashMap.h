@@ -18,6 +18,7 @@ private:
     int capacity = 100;
     Entry* map;
     int hashFunc(KeyType key);
+   
 
 public:
     HashMap();
@@ -27,6 +28,7 @@ public:
     void remove(KeyType key);
     void display();
     ValueType getVal(KeyType key);
+    void getHighest();
 };
 
 template <typename KeyType, typename ValueType>
@@ -44,7 +46,7 @@ int HashMap<KeyType, ValueType>::hashFunc(KeyType key) {
 template <typename KeyType, typename ValueType>
 bool HashMap<KeyType, ValueType>::isEmpty() {
     for (int i = 0; i < capacity; i++) {
-        if (map[i].key == KeyType()) {
+        if (!map[i].key.empty()) {
             return false;
         }
     }
@@ -62,6 +64,7 @@ void HashMap<KeyType, ValueType>::put(KeyType key) {
     }
 }
 
+
 template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::remove(KeyType key) {
 
@@ -76,7 +79,7 @@ void HashMap<KeyType, ValueType>::remove(KeyType key) {
         exit(0);
     }
     else {
-        map[hashedKeyIndex].key = KeyType();
+        map[hashedKeyIndex].key.clear();
     }
 
 }
@@ -94,14 +97,34 @@ inline ValueType HashMap<KeyType, ValueType>::getVal(KeyType key)
     }
 }
 
+template<typename KeyType, typename ValueType>
+ void HashMap<KeyType, ValueType>::getHighest()
+{
+     int bigval =0; // 1st word highest count
+    for (int i = 1; i < capacity; i++) {
+        if (map[bigval].value < map[i].value) {
+
+            bigval = i;
+        }
+        
+}
+   
+    cout << "Most frequently used word is: " << map[bigval].key<<" repeated "<<map[bigval].value<<" times.\n";
+
+
+  
+}
+
 template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::display() {
     for (int i = 0; i < capacity; i++)
     {
-        if (map[i].key=KeyType())
+        if (map[i].key.empty())
             continue;
         cout << "Key: " << map[i].key << ", Value: " << map[i].value << endl;
+
     }
+    getHighest();
 }
 
 template <typename KeyType, typename ValueType>
