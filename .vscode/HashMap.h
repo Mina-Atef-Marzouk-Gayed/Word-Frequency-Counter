@@ -11,7 +11,7 @@ public:
         KeyType key;
         ValueType value;
         Entry() : key(), value() {}
-        Entry(const KeyType& k, const ValueType& v) : key(k), value(0) {}
+        Entry(const KeyType& k, const ValueType& v) : key(k), value(1) {}
     };
 
 private:
@@ -99,10 +99,9 @@ template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::display() {
     for (int i = 0; i < capacity; i++)
     {
-        if (map[i].key.empty())continue;
-        {
-            cout << "Key: " << map[i].key << ", Value: " << map[i].value << endl;
-        }
+        if (map[i].key.empty())
+            continue;
+        cout << "Key: " << map[i].key << ", Value: " << map[i].value << endl;
     }
 }
 
