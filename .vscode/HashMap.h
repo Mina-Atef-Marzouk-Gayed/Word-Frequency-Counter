@@ -1,13 +1,14 @@
 #pragma once
 #include <iostream>
 #include<iomanip>
-
+//#include"Entry.h"
 using namespace std;
 
 
 template <typename KeyType, typename ValueType>
 class HashMap {
 public:
+    
     class Entry {
     public:
         KeyType key;
@@ -17,13 +18,14 @@ public:
     };
 
 private:
-    int capacity = 100;
+    int capacity;
     Entry* map;
     int hashFunc(KeyType key);
     void sortMapDescending();
 
 public:
     HashMap();
+    HashMap(int sizeofWords);
     ~HashMap();
     HashMap(const HashMap& other);
     bool isEmpty();
@@ -31,10 +33,14 @@ public:
     void remove(KeyType key);
     void display();
     ValueType getVal(KeyType key);
+
 };
 
 template <typename KeyType, typename ValueType>
-HashMap<KeyType, ValueType>::HashMap() : map(new Entry[capacity]) {}
+HashMap<KeyType, ValueType>::HashMap() :capacity(100), map(new Entry[capacity]) {}
+
+template<typename KeyType, typename ValueType>
+HashMap<KeyType, ValueType>::HashMap(int sizeofWords) :capacity(sizeofWords),map(new Entry[capacity]){}
 
 template <typename KeyType, typename ValueType>
 HashMap<KeyType, ValueType>::HashMap(const HashMap& other) : capacity(other.capacity), map(new Entry[capacity]) {
@@ -134,3 +140,4 @@ HashMap<KeyType, ValueType>::~HashMap() {
 
     delete[] map;
 }
+
