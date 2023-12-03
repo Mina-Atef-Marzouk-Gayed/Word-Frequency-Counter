@@ -116,11 +116,14 @@ inline ValueType HashMap<KeyType, ValueType>::getVal(KeyType key)
 
 template <typename KeyType, typename ValueType>
 void HashMap<KeyType, ValueType>::display() {
+    cout << left << setw(20) << "Key" << setw(20) << "Value" << endl;
+    cout << "----------------------------------" << endl;
+
     for (int i = 0; i < capacity; i++)
     {
-        if (map[i].key==KeyType())
+        if (map[i].key == KeyType())
             continue;
-        cout << "Key: " << map[i].key << " , Value: " << map[i].value << endl;
+        cout << left << setw(20) << map[i].key << setw(20) << map[i].value << endl;
     }
 }
 
