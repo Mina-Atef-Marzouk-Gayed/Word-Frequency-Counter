@@ -5,14 +5,23 @@ using namespace std;
 
 void replaceNonCharactersWithSpace(string& text) {
     for (char& c : text) {
-        if (!isalpha(c)) {
+        if (!isalnum(c)) {
             c = ' ';
         }
     }
 }
+int splitTextCounter(const string text) {
+    int wordCounter = 0;
+    istringstream separate(text);
+    string word;
+    while (separate >> word) {
+        wordCounter++;
+    }
+    return wordCounter+59;
+}
 void splitText(string& text)
-{
-    HashMap<string, int> mapping;
+{   
+    HashMap<string, int> mapping(splitTextCounter(text));
     istringstream separate(text);
     string word;
     while (separate >> word) {
@@ -27,7 +36,6 @@ void splitText(string& text)
 
 int main() {
 
-   
     string text;
     cout << "Please input any text you would like : ";
     getline(cin, text);
@@ -36,4 +44,3 @@ int main() {
 
     return 0;
 }
-
