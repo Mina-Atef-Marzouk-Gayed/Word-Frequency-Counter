@@ -3,7 +3,7 @@
 #include "hashmap.h"
 using namespace std;
 
-void replaceNonCharactersWithSpace(std::string& text) {
+void replaceNonCharactersWithSpace(string& text) {
     for (char& c : text) {
         if (!isalpha(c)) {
             c = ' ';
