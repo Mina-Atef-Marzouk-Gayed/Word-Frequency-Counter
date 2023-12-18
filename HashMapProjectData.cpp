@@ -13,6 +13,57 @@ while(getline(file,line,' '))
 
 return counter;
 }
+void countSymbolsLettersDigitsWordsSentences(const string& input) {
+    HashMap symbolsMap(128); 
+    HashMap lettersMap(26);  
+    HashMap digitsMap(10);   
+    HashMap wordsMap;
+    HashMap sentencesMap;
+
+    char ch;
+    string word;
+    int symbolsCount = 0;
+    int lettersCount = 0;
+    int digitsCount = 0;
+    int wordsCount = 0;
+    int sentencesCount = 0;
+
+    for (size_t i = 0; i < input.length(); ++i) {
+        ch = input[i];
+        if (isalpha(ch)) {
+            lettersCount++;
+        }
+        else if (isdigit(ch)) {
+            digitsCount++;
+        }
+        else if (!isspace(ch)) {  // Count symbols only if not a space
+            symbolsCount++;
+        }
+
+        if (isalnum(ch)) {
+            word += ch;
+        }
+        else if (!word.empty()) {
+            wordsCount++;
+            wordsMap.put(word);
+            word.clear();
+        }
+
+        if (ch == '.' || ch == '!' || ch == '?') {
+            sentencesCount++;
+            sentencesMap.put(to_string(sentencesCount));
+        }
+    }
+    cout << endl << endl;
+    cout << "Symbols count: " << symbolsCount << endl;
+    cout << "Letters count: " << lettersCount << endl;
+    cout << "Digits count: " << digitsCount << endl;
+    cout << "Words count: " << wordsCount << endl;
+    cout << "Sentences count: " << sentencesCount << endl;
+    cout << endl << endl;
+
+}
+
 void replaceNonCharactersWithSpace(string& text) {
     for (char& c : text) {
         if (!isalnum(c)) {
