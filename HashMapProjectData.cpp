@@ -4,7 +4,15 @@
 #include <sstream>
 #include "hashmap.h"
 using namespace std;
+long wordsfile(string filename){
+ifstream file;
+file.open(filename);
+string line; int counter= 0;
+while(getline(file,line,' '))
+    counter = counter+1;
 
+return counter;
+}
 void replaceNonCharactersWithSpace(string& text) {
     for (char& c : text) {
         if (!isalnum(c)) {
@@ -39,8 +47,8 @@ void splitText(string& text)
 int main() {
 
     string text = "We are a social media platform designed to help users find and share information about the latest news, events, and trends around the world. We believe in the power of people to share and collaborate on knowledge, and we are committed to fostering a community of curious learners who want to expand their understanding of the world around them. We offer a wide range of features and resources to help users stay up-to-date with the latest trends and developments in their areas of interest, from politics and business to science and culture.";
-   // cout << "Please input any text you would like : ";
-   // getline(cin, text); //We are a social media platform designed to help users find and share information about the latest news, events, and trends around the world.We believe in the power of people to share and collaborate on knowledge, and we are committed to fostering a community of curious learners who want to expand their understanding of the world around them.We offer a wide range of features and resources to help users stay up - to - date with the latest trends and developments in their areas of interest, from politics and business to science and culture.
+   cout << "Please input any text you would like : ";
+   getline(cin, text); //We are a social media platform designed to help users find and share information about the latest news, events, and trends around the world.We believe in the power of people to share and collaborate on knowledge, and we are committed to fostering a community of curious learners who want to expand their understanding of the world around them.We offer a wide range of features and resources to help users stay up - to - date with the latest trends and developments in their areas of interest, from politics and business to science and culture.
     replaceNonCharactersWithSpace(text);
     splitText(text);
 
